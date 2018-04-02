@@ -43,3 +43,4 @@ Route::post('/confirmStudio', 'AdminController@confirmStudio')->name('admin.conf
 Route::get('/detailStudio/{id}', 'AdminController@detailStudio')->name('admin.detailStudio');
 
 Route::delete('/deleteStudio', 'HomeController@deleteStudio')->name('home.deleteStudio');
+Route::get('/editStudio', 'HomeController@editStudio')->name('home.editStudio');
