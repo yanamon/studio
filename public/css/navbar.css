@@ -1,0 +1,51 @@
+
+ body {
+background-image:url('musik5.jpg');
+  font-family: "Courier New";
+}
+ nav {
+ text-align: center;
+ width: 1341px;
+ font-family: arial;
+ } 
+ nav ul {
+border-radius: 2px;
+ margin-top: -10px;
+ margin-left: -15px;
+ margin-right: -10px;
+ background: black;
+ padding: 0 10px;
+ list-style: none;
+ position: relative;
+ display: inline-table;
+ width: 100%;
+ }
+ nav ul li{
+ float:right;
+ }
+
+ nav ul li:hover{
+ background:#c0c0c0;
+ height: 110px; 
+ }
+
+ nav ul li:hover a{
+ color:#000;
+ }
+
+ nav ul li a{
+ display: block;
+ padding: 25px;
+ color: #fff;
+ text-decoration: none;
+}
+#warna{
+  margin-left: 5px;
+  color: white;
+  float: left;
+  font-family: "Courier New";
+}
+img {
+	float: left;
+	padding: 20px 10px 10px 20px;
+}

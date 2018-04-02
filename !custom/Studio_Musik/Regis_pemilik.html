@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registrasi Pemilik</title>
+	<link rel="stylesheet" href="css/regis.css"/>
+	<link rel="stylesheet" href="css/navbar.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="dist/css/bootstrap.css">
+</head>
+<body>
+
+	<nav>
+    	<ul>
+    		<div id="warna1">
+    		<h3><b>STUDIO OF MUSIC</b></h3></div>
+       		<li><a href="#">Login</a></li>
+       		<li><a href="#">Gallery</a></li>
+       		<li><a href="#">Contact Us</a></li>
+    	</ul>
+	</nav>
+
+	<div id="regis_pemilik">
+			<center><h2>Registration Owner</h2></center></br>
+
+		<form action="/" method="post">	
+		<div class="form-group has-feedback">
+    		<i class="form-control-feedback glyphicon glyphicon-music"></i><input type="text" class="form-control" name="nm_pemilik" id="nm_pemilik" placeholder="Studio Name*"/>
+ 		</div>
+
+		<div class="form-group has-feedback">
+    		<i class="form-control-feedback glyphicon glyphicon-user"></i><input type="text" class="form-control" name="nm_pemilik" id="nm_pemilik" placeholder="Your Name*"/>
+ 		</div>
+
+		<div class="form-group has-feedback">
+			<i class="form-control-feedback glyphicon glyphicon-phone-alt"></i><input type="text" class="form-control" name="tlp_pemilik" id="tlp_pemilik" placeholder="Phone Number*"/>
+		</div>
+
+		<div class="form-group has-feedback">
+			<i class="form-control-feedback glyphicon glyphicon-envelope"></i><input type="email" class="form-control" name="email_p" id="email_p" placeholder="Email*"/>
+		</div>
+
+		<div class="form-group has-feedback">
+			<span class="form-control-feedback glyphicon glyphicon-lock"></span><input type="password" class="form-control" name="pass_p" id="pass_p" placeholder="Password*"/>
+		</div>
+
+		<div class="form-group has-feedback">
+			<i class="form-control-feedback glyphicon glyphicon-home"></i><textarea name="alamat_p" class="textarea" cols="57" rows="3" id="alamat_p" placeholder="Address*"/></textarea>
+		</div>
+
+		<div class="form-group has-feedback">
+			<i class="form-control-feedback glyphicon glyphicon-pencil"></i><input type="text" class="form-control" name="ktp_p" id="ktp_p" placeholder="KTP Number*"/>
+		</div>
+		
+		<h4>Send Image KTP*</h4>
+		<input type="file" class="form-control-file" name="gambar" value="gambar">
+
+		<h4>City*</h4>
+		<select class="form-control" id="dropdown">
+			<option>---</option>
+		</select>
+		
+		<h4><b><button class="button button-block" name="kirim" value="Kirim">SUBMIT</button></b></h4>
+	</div>
+</body>
+</html>

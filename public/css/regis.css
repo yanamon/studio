@@ -1,0 +1,71 @@
+body {
+background-image:url('musik5.jpg');
+  font-family: "Courier New";
+}
+
+#regis_user {
+  background: rgba(19, 35, 47, 0.9);
+  color: white;
+  font-family: "Courier New";
+  padding: 10px 50px 0px 50px;
+  width:600px;
+  height:500px;
+  margin-left:375px;
+  margin-top:35px;;
+  border-radius:4px;
+}
+
+
+#regis_pemilik {
+  background: rgba(19, 35, 47, 0.9);
+  color: white;
+  font-family: "Courier New";
+  padding: 10px 50px 0px 50px;
+  width:600px;
+  height:750px;
+  margin-left:375px;
+  margin-top:35px;;
+  border-radius:4px;
+}
+input[type="text"] {
+  border-radius: 4px;
+  background-color: rgba(19, 35, 47, 0.9);
+  color: white;
+  font-size: 20px;
+}
+input[type="email"] {
+  border-radius: 4px;
+  background-color: rgba(19, 35, 47, 0.9);
+  color: white;
+  font-size: 20px;
+}
+input[type="password"] {
+  border-radius: 4px;
+  background-color: rgba(19, 35, 47, 0.9);
+  color: white;
+  font-size: 20px;
+}
+.textarea {
+  border-radius: 4px;
+  background-color: rgba(19, 35, 47, 0.9);
+  color: white;
+  font-size: 20px;
+}
+#dropdown {
+  border-radius: 4px;
+  background-color: rgba(19, 35, 47, 0.9);
+}
+#warna{
+  margin-left: -5px;
+  margin-top: 40px;
+  color: white;
+  float: left;
+  font-family: "Courier New";
+}
+#warna1{
+  margin-left: -5px;
+  margin-top: 40px;
+  color: white;
+  float: left;
+  font-family: "Courier New";
+}

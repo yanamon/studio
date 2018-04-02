@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemadesigner version="6.5">
+<source>
+<database charset="latin1" collation="latin1_swedish_ci">db_studio</database>
+</source>
+<canvas zoom="100">
+<tables>
+<table name="tb_booking" view="colnames">
+<left>7</left>
+<top>358</top>
+<width>137</width>
+<height>210</height>
+<sql_create_table>CREATE TABLE `tb_booking` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `id_studio` int(12) DEFAULT NULL,
+  `id_user` int(12) DEFAULT NULL,
+  `tgl_booking` date DEFAULT NULL,
+  `mulai_booking` time DEFAULT NULL,
+  `selesai_booking` time DEFAULT NULL,
+  `biaya_booking` int(6) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `t_booking_ibfk_1` (`mulai_booking`),
+  KEY `t_booking_ibfk_2` (`selesai_booking`),
+  KEY `id_studio` (`id_studio`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `tb_booking_ibfk_3` FOREIGN KEY (`id_studio`) REFERENCES `tb_studio` (`id`),
+  CONSTRAINT `tb_booking_ibfk_4` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tb_gallery" view="colnames">
+<left>19</left>
+<top>1</top>
+<width>110</width>
+<height>154</height>
+<sql_create_table>CREATE TABLE `tb_gallery` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `id_studio` int(12) DEFAULT NULL,
+  `foto_studio` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_studio` (`id_studio`),
+  CONSTRAINT `tb_gallery_ibfk_1` FOREIGN KEY (`id_studio`) REFERENCES `tb_studio_musik` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tb_penyewa" view="colnames">
+<left>613</left>
+<top>392</top>
+<width>136</width>
+<height>169</height>
+<sql_create_table>CREATE TABLE `tb_penyewa` (
+  `id` int(12) NOT NULL,
+  `nama_penyewa` varchar(100) DEFAULT NULL,
+  `telp_penyewa` varchar(12) DEFAULT NULL,
+  `id_user` int(12) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `tb_penyewa_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tb_studio_musik" view="colnames">
+<left>613</left>
+<top>18</top>
+<width>172</width>
+<height>302</height>
+<sql_create_table>CREATE TABLE `tb_studio_musik` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `nama_studio_musik` varchar(100) DEFAULT NULL,
+  `nama_pemilik` varchar(100) DEFAULT NULL,
+  `telp_studio` varchar(20) DEFAULT NULL,
+  `no_ktp` varchar(50) DEFAULT NULL,
+  `foto_ktp` varchar(100) DEFAULT NULL,
+  `deskripsi` text,
+  `id_user` int(12) DEFAULT NULL,
+  `jumlah_saved` int(12) DEFAULT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `lat` double DEFAULT NULL,
+  `lng` double DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_user` (`id_user`),
+  CONSTRAINT `tb_studio_musik_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="users" view="colnames">
+<left>364</left>
+<top>294</top>
+<width>145</width>
+<height>209</height>
+<sql_create_table>CREATE TABLE `users` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `previlege` tinyint(4) DEFAULT NULL,
+  `verified` tinyint(4) DEFAULT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tb_studio" view="colnames">
+<left>168</left>
+<top>90</top>
+<width>138</width>
+<height>141</height>
+<sql_create_table>CREATE TABLE `tb_studio` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `id_studio_musik` int(12) DEFAULT NULL,
+  `nama_studio` varchar(50) DEFAULT NULL,
+  `biaya_booking` int(6) DEFAULT NULL,
+  `deskripsi_studio` text,
+  PRIMARY KEY (`id`),
+  KEY `id_studio_musik` (`id_studio_musik`),
+  CONSTRAINT `tb_studio_ibfk_1` FOREIGN KEY (`id_studio_musik`) REFERENCES `tb_studio_musik` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+<table name="tb_saved_studio" view="colnames">
+<left>847</left>
+<top>228</top>
+<width>142</width>
+<height>143</height>
+<sql_create_table>CREATE TABLE `tb_saved_studio` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `id_studio_musik` int(12) DEFAULT NULL,
+  `id_penyewa` int(12) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_penyewa` (`id_penyewa`),
+  KEY `id_studio_musik` (`id_studio_musik`),
+  CONSTRAINT `tb_saved_studio_ibfk_1` FOREIGN KEY (`id_penyewa`) REFERENCES `tb_penyewa` (`id`),
+  CONSTRAINT `tb_saved_studio_ibfk_2` FOREIGN KEY (`id_studio_musik`) REFERENCES `tb_studio_musik` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1</sql_create_table>
+</table>
+</tables>
+</canvas>
+</schemadesigner>
