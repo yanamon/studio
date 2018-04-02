@@ -15,11 +15,7 @@ use Mail;
 class StudioMusikController extends Controller
 {
   
-    public function __construct()
-    {
-        //defining our middleware for this controller
-        $this->middleware('auth');
-    }
+   
     /**
      * Display a listing of the resource.
      *

@@ -44,7 +44,7 @@
             <li><a href="{{route("home")}}">Home</a></li>
 			@guest
                 <li><a href="{{route("login")}}">Masuk</a></li>
-				<li><a href="{{route("home.")}}">Daftar Studio</a></li> 
+				<li><a href="{{route("home.regisStudio")}}">Daftar Studio</a></li> 
             @else
                 @if(Auth::user()->previlege==1)
                     <li><a href="{{route("studioMusik.index")}}">Dashboard</a></li>

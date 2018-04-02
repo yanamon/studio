@@ -20,8 +20,8 @@ Route::resource('studioMusik', 'StudioMusikController');
 Route::resource('admin', 'AdminController');
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/regisPenyewa', 'HomeController@regisPenyewa')->name('home.regisPenyewa')
-Route::get('/regisStudio', 'HomeController@regisStudio')->name('home.regisStudio')
+Route::get('/regisPenyewa', 'HomeController@regisPenyewa')->name('home.regisPenyewa');
+Route::get('/regisStudio', 'HomeController@regisStudio')->name('home.regisStudio');
 
 Route::get('verify', 'StudioMusikController@verify')->name('studioMusik.verify');
 Route::post('resendVerifikasi', 'StudioMusikController@resendVerifikasi')->name('studioMusik.resendVerifikasi');
