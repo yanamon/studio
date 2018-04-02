@@ -42,4 +42,5 @@ Route::post('/unconfirmStudio', 'AdminController@unconfirmStudio')->name('admin.
 Route::post('/confirmStudio', 'AdminController@confirmStudio')->name('admin.confirmStudio');
 Route::get('/detailStudio/{id}', 'AdminController@detailStudio')->name('admin.detailStudio');
 
+Route::delete('/deleteStudio', 'HomeController@deleteStudio')->name('home.deleteStudio');
 Route::get('/editStudio', 'HomeController@editStudio')->name('home.editStudio');
