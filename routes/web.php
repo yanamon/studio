@@ -41,3 +41,5 @@ Route::get('/unconfirmedStudio', 'AdminController@unconfirmedStudio')->name('adm
 Route::post('/unconfirmStudio', 'AdminController@unconfirmStudio')->name('admin.unconfirmStudio');
 Route::post('/confirmStudio', 'AdminController@confirmStudio')->name('admin.confirmStudio');
 Route::get('/detailStudio/{id}', 'AdminController@detailStudio')->name('admin.detailStudio');
+
+Route::get('/editStudio', 'HomeController@editStudio')->name('home.editStudio');
