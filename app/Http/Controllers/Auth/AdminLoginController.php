@@ -32,7 +32,7 @@ class AdminLoginController extends Controller
             //attempt to login the admins in
             if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)){
                 //if successful redirect to admin dashboard
-                return redirect()->intended(route('admin.index')); 
+                return redirect()->intended(route('admin.unconfirmedStudio')); 
             }
         }
         //if unsuccessfull redirect back to the login for with form data

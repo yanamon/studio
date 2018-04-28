@@ -11,4 +11,7 @@ class StudioMusik extends Model
 		return $this->belongsTo('App\User', 'id_user');
     }
 
+    public function studio(){
+      return $this->hasMany('App\Studio', 'id_studio_musik');
+  }
 }

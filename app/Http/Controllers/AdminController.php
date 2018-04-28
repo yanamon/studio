@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\StudioMusik;
+use App\Penyewa;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view("admin.home");
+        $users = User::with('StudioMusik')->with('Penyewa')->where('previlege', 1)->orderBy('confirmed')->orderBy('updated_at','DESC')->get();
+        return view("admin.unconfirmed-studio",compact('users'));
     }
 
     /**
@@ -32,7 +34,7 @@ class AdminController extends Controller
 
     public function unconfirmedStudio()
     {
-        $users = User::with('StudioMusik')->where('previlege', 1)->orderBy('confirmed')->orderBy('updated_at','DESC')->get();
+        $users = User::with('StudioMusik')->with('Penyewa')->where('previlege', 1)->orderBy('confirmed')->orderBy('updated_at','DESC')->get();
         return view("admin.unconfirmed-studio",compact('users'));
     }
 
@@ -44,6 +46,20 @@ class AdminController extends Controller
     }
 
     public function unconfirmStudio(Request $request){
+        $user = User::find($request->id);
+        $user->confirmed = 0;
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function banStudio(Request $request){
+        $user = User::find($request->id);
+        $user->confirmed = 2;
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function unbanStudio(Request $request){
         $user = User::find($request->id);
         $user->confirmed = 0;
         $user->save();

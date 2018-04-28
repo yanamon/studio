@@ -3,58 +3,65 @@
 
 
 @section('body')
-    <div id="regis_pemilik">
-        <center><h2>Daftar Studio</h2></center><br>
 
-        <form action="{{ route("studioMusik.store") }}" method="POST" enctype="multipart/form-data">
-            {{csrf_field()}}
-            <div class="form-group has-feedback">
-                <i class="form-control-feedback glyphicon glyphicon-music"></i><input type="text" class="form-control" name="nama_studio_musik" id="nm_studio_musik" placeholder="Nama Studio Musik*"/>
-            </div>
-
-            <div class="form-group has-feedback">
-                <i class="form-control-feedback glyphicon glyphicon-user"></i><input type="text" class="form-control" name="nama_pemilik" id="nm_pemilik" placeholder="Nama Pemilik*"/>
-            </div>
-
-            <div class="form-group has-feedback">
-                <i class="form-control-feedback glyphicon glyphicon-envelope"></i><input type="email" class="form-control" name="email" id="email_p" placeholder="Email*"/>
-            </div>
-
-            <div class="form-group has-feedback">
-                <span class="form-control-feedback glyphicon glyphicon-lock"></span><input type="password" class="form-control" name="password" id="pass_p" placeholder="Password*"/>
-            </div>
-
-            <div class="form-group has-feedback">
-                <span class="form-control-feedback glyphicon glyphicon-lock"></span><input type="password" class="form-control" name="password_confirmation" id="pass_confirm" placeholder="Ketik Ulang Password*"/>
-            </div>
-
-            <div class="form-group has-feedback">
-                <i class="form-control-feedback glyphicon glyphicon-phone-alt"></i><input type="text" class="form-control" name="telp" id="tlp_pemilik" placeholder="Nomor HP/Telp*"/>
-            </div>
-
-            <div class="form-group has-feedback">
-                <i class="form-control-feedback glyphicon glyphicon-pencil"></i><input type="text" class="form-control" name="no_ktp" id="ktp_p" placeholder="Nomor KTP*"/>
-            </div>
-            
-            <h4>Upload Foto KTP*</h4>
-            <input type="file" data-preview="#preview" class="form-control-file" name="foto_ktp" value="gambar">
-            <img class="form-control-file" id="preview"  src="" ></img>
-
-            <div class="form-group has-feedback">
-              <h4 for="map">Lokasi*</h4>
-              <input id="lat" type="hidden" name="lat"/>
-              <input id="lng" type="hidden" name="lng"/>
-              <input id="pac-input" name="lokasi" class="col-lg-8 form-control" type="text" placeholder="Cari Lokasinya Disini">
-              <div id="map" style="width:100%;height:250px;"></div>
-            </div>
-
-            <div class="form-group has-feedback">
-                <i class="form-control-feedback glyphicon glyphicon-home"></i><textarea name="alamat" class="textarea" cols="57" rows="3" id="alamat_p" placeholder="Alamat Lain/Detail Lokasi"/></textarea>
-            </div>
-            
-            <h4><b><button type="submit" class="button button-block" name="kirim" value="Kirim">SUBMIT</button></b></h4>
-        </form>
+<div class="content-wrapper">
+    <!--location map-->
+    <div class="map">
+        <div id="map"></div>
     </div>
+    <!--end location map-->
+    <!--contact form-->
+    <div class="form-container">
+        <div class="contact-form">
+            <form action="{{ route("studioMusik.store") }}" method="POST" enctype="multipart/form-data">
+                {{csrf_field()}}
+                <input name="id" type="hidden" value="{{ Auth::user()->id }}">
+                <div class="form-group">
+                    <label for="email3">Nama Studio:</label>
+                    <input autocomplete="true" id="email3" name="nama_studio_musik">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Telepon:</label>
+                    <input autocomplete="true" type="tel" id="phone" name="telp">
+                </div>
+                <div class="form-group">
+                    <label for="msg">No KTP</label>
+                    <input autocomplete="true" type="tel" id="phone" name="no_ktp">
+                </div>
+                <div class="form-group">
+                    <label for="msg">Upload Foto KTP</label>
+                    <input type="file" data-preview="#preview" name="foto_ktp" value="gambar">
+                </div>
+                <div class="form-group">
+                    <label for="msg">Lokasi</label>
+                    <input id="lat" type="hidden" name="lat"/>
+                    <input id="lng" type="hidden" name="lng"/>
+                    <input id="pac-input" name="lokasi" class="col-lg-8 form-control" type="text" placeholder="Cari Lokasinya Disini">
+                </div>
+                <button type="submit" class="btn ui-btn info">Submit</button>
+            </form>
+
+            <div class="kando info">
+                <h5>CONTACT INFORMATION</h5>
+                <div class="contact-info">
+                    <a href="mailto:someone@example.com">someone@example.com</a>
+                    <span>+1 285 6658 5476215</span>
+                    <span>1182 Market St,</span>
+                    <span> San Francisco, CA</span>
+                </div>
+                <div class="social">
+                    <a href="#"><i class="fa fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                </div>
+                <i class="fa fa-envelope-o fa-5x text-white"></i>
+            </div>
+        </div>
+    </div>
+    <!--end contact form-->
+
+</div>
 @endsection
 
 

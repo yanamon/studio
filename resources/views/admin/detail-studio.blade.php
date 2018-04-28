@@ -17,7 +17,7 @@
 <h5>Pemilik : {{ $user->studioMusik->nama_pemilik }}</h5>
 <h5>Telp : {{ $user->studioMusik->foto_ktp }}</h5>
 <h5>No KTP : {{ $user->studioMusik->telp_studio }}</h5>
-<img style="width: 300px;" src="{{ asset('ktp/'.$user->studioMusik->foto_ktp) }}">
+<img style="width: 300px;" src="{{ asset('/image/ktp/'.$user->studioMusik->foto_ktp) }}">
 <h5>Email : {{ $user->email}}</h5>
 
 <h5>Lokasi : {{ $user->studioMusik->lokasi}}</h5>

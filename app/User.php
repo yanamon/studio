@@ -28,8 +28,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function Penyewa(){
-        return $this->hasOne('App\Penyewa');
+    public function penyewa(){
+        return $this->hasOne('App\Penyewa', 'id_user');
     }
     
     public function studioMusik(){
