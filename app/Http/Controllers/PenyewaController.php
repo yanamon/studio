@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use App\User;
 use App\Penyewa;
 use Illuminate\Http\Request;
@@ -14,7 +15,9 @@ class PenyewaController extends Controller
     public function __construct()
     {
         //defining our middleware for this controller
-        $this->middleware('auth');
+        $this->middleware('auth',['except' => [
+            'store'
+        ]]);
     }
     
     /**
@@ -45,24 +48,22 @@ class PenyewaController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $validator = Validator::make($request->all(), [
             'nama_penyewa' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6|confirmed',
-            'telp' => 'required'
         ]);
+        if ($validator->fails()) {
+            return redirect()->back()->with('validate', 2);
+        }
+
         $user = new User();
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->name = $request->nama_penyewa;
+        $user->telp = $request->telp;
         $user->previlege = 0;
         $user->save();
-
-        $penyewa = new Penyewa();
-        $penyewa->id_user = $user->id;
-        $penyewa->nama_penyewa = $request->nama_penyewa;
-        $penyewa->telp_penyewa = $request->telp;
-        $penyewa->save();
         
         Auth::loginUsingId($user->id);
         return redirect('/');

@@ -39,7 +39,6 @@ class LoginController extends Controller
         $previlege =  Auth::user()->previlege;
         if($previlege == 0) return redirect('/');
         else if($previlege == 1) return redirect('/studioMusik');
-        else return redirect()->back();
     }
 
     public function __construct()

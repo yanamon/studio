@@ -20,8 +20,13 @@ Route::resource('studioMusik', 'StudioMusikController');
 Route::resource('admin', 'AdminController');
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/regisPenyewa', 'HomeController@regisPenyewa')->name('home.regisPenyewa');
-Route::get('/regisStudio', 'HomeController@regisStudio')->name('home.regisStudio');
+Route::get('/listStudio', 'HomeController@listStudio')->name('home.listStudio');
+Route::post('/nearStudio', 'HomeController@nearStudio')->name('home.nearStudio');
+Route::get('/regisStudio', ['middleware' => 'auth', 'uses'=> 'HomeController@regisStudio'])->name('home.regisStudio');
+Route::get('/detailStudio/{id}', 'HomeController@detailStudio')->name('index.detailStudio');
+
+Route::get('/bookStudio/{id}', 'BookingController@bookStudio')->name('home.bookStudio');
+Route::post('/rekapBooking', 'BookingController@rekapBooking')->name('booking.rekapBooking');
 
 Route::get('verify', 'StudioMusikController@verify')->name('studioMusik.verify');
 Route::post('resendVerifikasi', 'StudioMusikController@resendVerifikasi')->name('studioMusik.resendVerifikasi');
@@ -40,7 +45,8 @@ Route::post('/adminlogout', 'Auth\AdminLoginController@logout')->name('admin.log
 Route::get('/unconfirmedStudio', 'AdminController@unconfirmedStudio')->name('admin.unconfirmedStudio');
 Route::post('/unconfirmStudio', 'AdminController@unconfirmStudio')->name('admin.unconfirmStudio');
 Route::post('/confirmStudio', 'AdminController@confirmStudio')->name('admin.confirmStudio');
-Route::get('/detailStudio/{id}', 'AdminController@detailStudio')->name('admin.detailStudio');
+Route::get('/detailConfirmStudio/{id}', 'AdminController@detailConfirmStudio')->name('admin.detailConfirmStudio');
+Route::post('/banStudio', 'AdminController@banStudio')->name('admin.banStudio');
+Route::post('/unbanStudio', 'AdminController@unbanStudio')->name('admin.unbanStudio');
 
-Route::delete('/deleteStudio', 'HomeController@deleteStudio')->name('home.deleteStudio');
-Route::get('/editStudio', 'HomeController@editStudio')->name('home.editStudio');
+

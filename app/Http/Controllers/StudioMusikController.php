@@ -18,7 +18,10 @@ class StudioMusikController extends Controller
     public function __construct()
     {
         //defining our middleware for this controller
-        $this->middleware('auth');
+        $this->middleware('auth',['except' => [
+            'store',
+            'verify',
+        ]]);
     }
    
     /**
@@ -51,9 +54,6 @@ class StudioMusikController extends Controller
     {
         $this->validate($request,[
             'nama_studio_musik' => 'required',
-            'nama_pemilik' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:6',
             'telp' => 'required',
             'no_ktp' => 'required',
             'foto_ktp' => 'required',
@@ -62,25 +62,21 @@ class StudioMusikController extends Controller
             'lokasi' => 'required'
 
         ]);
-        $user = new User();
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->name = $request->nama_studio_musik;
+        $user = User::find($request->id);
         $user->previlege = 1;
         $user->verified = 0; 
         $user->confirmed = 0; 
         $user->save();
 
         $studioMusik = new StudioMusik();
-        $studioMusik->id_user = $user->id;
+        $studioMusik->id_user = $request->id;
         $studioMusik->nama_studio_musik = $request->nama_studio_musik;
-        $studioMusik->nama_pemilik = $request->nama_pemilik;
         $studioMusik->telp_studio = $request->telp;
         $studioMusik->alamat = $request->alamat;  
         $studioMusik->no_ktp = $request->no_ktp;     
         
         $nama_foto = time().'.'.$request->foto_ktp->getClientOriginalExtension();
-        $request->foto_ktp->move(public_path('ktp'), $nama_foto);
+        $request->foto_ktp->move(public_path('image/ktp'), $nama_foto);
         $studioMusik->foto_ktp = $nama_foto; 
 
         function get_data($url_par) {

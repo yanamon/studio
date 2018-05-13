@@ -1,32 +1,37 @@
 @extends('layouts.admin-layout')
 
 @section('body')
-	<div class="form">
-		<div id="login">   
-			<h1>Admin Login</h1>		
-			<form class="form-horizontal" method="POST" action="{{ route('admin.login') }}">
-                {{ csrf_field() }}
-				<div class="field-wrap">
-					<div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-						<label>Username<span class="req">*</span></label>
-						<input id="email" type="text" class="form-control" name="email" required autofocus>      
+<br><br><br><br><br>
+<div id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-body">
+    <div class="auth-wrapper">
+			<div class="form-tabs">
+				<a href="#" data-frm="login-frm" id="login-frm" class="tab active">Admin Login</a>
+			</div>
+			<form class="login-frm frm" id="login-frm2" action="{{ route('admin.login') }}" method="post">
+				{{ csrf_field() }}
+				<div class="form-group">
+					<label for="email1">Email:</label>
+					<input required name="email" autocomplete="email" id="email1">
+				</div>
+				<div class="form-group">
+					<label for="pass1">Password:</label>
+					<input type="password" required name="password" id="pass1">
+				</div>
+				<div class="remember-me">
+					<div>
+						<input type="checkbox" id="test1" name="remember" />
+						<label for="test1">Remember Me</label>
 					</div>
-				</div>		
-				<div class="field-wrap">
-					<div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-					<label>Password<span class="req">*</span></label>
-					<input id="password" type="password" class="form-control" name="password" required>
+					<a href="#">Forgot Password?</a>
 				</div>
-					<br>
-					<div class="checkbox">
-					<label><input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}></label>
-					<label for="remember"><i class="octicon octicon-check"></i> &nbspRemember all the things</label>
+				<div class="sub-btn">
+					<input type="submit" class="btn ui-btn info" value="SIGN IN">
 				</div>
-				
-				<p><label class="checkbox"></p></br></label>
-				</div>
-					<button type="submit" class="button button-block"/>Masuk</button>
 			</form>
-		</div><!-- tab-content -->
-	</div> <!-- /form -->
+		</div>
+</div>
+</div>
+</div>
 @endsection
