@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use App\User;
 use App\Penyewa;
+use App\Booking;
+use App\StudioMusik;
+use App\Studio;
 use Illuminate\Http\Request;
 use Auth;
 use Illuminate\Support\Facades\Hash;
@@ -75,6 +77,21 @@ class PenyewaController extends Controller
      * @param  \App\Penyewa  $penyewa
      * @return \Illuminate\Http\Response
      */
+    public function userBooking($id)
+    {
+        $bookings = Booking::with(['studio' => function($query){
+            $query->with('studioMusik');
+         }])->with('jamMulai')->with('jamSelesai')
+         ->where('id_user', $id)->get();
+
+        return view('penyewa.booking', compact('bookings'));
+    }
+
+    public function userProfile($id)
+    {
+        return view('penyewa.profile');
+    }
+
     public function show(Penyewa $penyewa)
     {
         //

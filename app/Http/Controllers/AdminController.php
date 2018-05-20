@@ -22,10 +22,21 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::with('StudioMusik')->with('Penyewa')->where('previlege', 1)->orderBy('confirmed')->orderBy('updated_at','DESC')->get();
+        $users = User::with('StudioMusik')->where('previlege', 1)->orderBy('confirmed')->get();
         return view("admin.unconfirmed-studio",compact('users'));
     }
 
+    public function crudUser()
+    {
+        $users = User::with('Penyewa')->where('previlege',0)->orderBy('created_at')->get();
+        return view("admin.crud-user",compact('users'));
+    }
+
+    public function crudStudioMusik()
+    {
+        $users = User::with('StudioMusik')->where('previlege', 1)->orderBy('created_at')->get();
+        return view("admin.crud-studio-musik",compact('users'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +45,8 @@ class AdminController extends Controller
 
     public function unconfirmedStudio()
     {
-        $users = User::with('StudioMusik')->with('Penyewa')->where('previlege', 1)->orderBy('confirmed')->orderBy('updated_at','DESC')->get();
+        $users = User::with('StudioMusik')->with('Penyewa')->where('previlege', 1)->orderBy('confirmed')->get();
+        dd($users);
         return view("admin.unconfirmed-studio",compact('users'));
     }
 

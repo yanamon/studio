@@ -35,13 +35,22 @@ Route::post('resendVerifikasi', 'StudioMusikController@resendVerifikasi')->name(
 //    return view("admin.home");
 //}]);
 
+Route::get('/userBooking/{id}', 'PenyewaController@userBooking')->name('penyewa.userBooking');
+Route::get('/userProfile/{id}', 'PenyewaController@userProfile')->name('penyewa.userProfile');
+
+
+
+
+
+
 
 
 Route::get('/adminlogin', 'Auth\AdminLoginController@loginform')->name('admin.loginform');
 Route::post('/adminlogin', 'Auth\AdminLoginController@login')->name('admin.login');
 Route::post('/adminlogout', 'Auth\AdminLoginController@logout')->name('admin.logout');
 
-
+Route::get('/crudStudioMusik', 'AdminController@crudStudioMusik')->name('admin.crudStudioMusik');
+Route::get('/crudUser', 'AdminController@crudUser')->name('admin.crudUser');
 Route::get('/unconfirmedStudio', 'AdminController@unconfirmedStudio')->name('admin.unconfirmedStudio');
 Route::post('/unconfirmStudio', 'AdminController@unconfirmStudio')->name('admin.unconfirmStudio');
 Route::post('/confirmStudio', 'AdminController@confirmStudio')->name('admin.confirmStudio');

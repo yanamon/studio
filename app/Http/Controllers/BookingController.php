@@ -126,9 +126,10 @@ class BookingController extends Controller
         $booking->mulai_booking = $mulai_booking->id;
         $booking->selesai_booking = $selesai_booking->id;
         $booking->biaya_booking = $request->biaya_booking;
+        $booking->status = "pending";
         $booking->save();
         
-        return redirect('/');
+        return redirect('/userBooking/'.$booking->id_user);
     }
 
     /**

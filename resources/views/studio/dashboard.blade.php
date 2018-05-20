@@ -1,27 +1,8 @@
-@extends('layouts.header-footer')
+@extends('layouts.user-layout')
 
 @section('body')
+
 @if(Auth::user()->verified==0 || Auth::user()->confirmed==0)
-<!--side menu-->
-<div class="side-nav">
-    <div class="dash-logo">
-        <i class="fa fa-times cls-nav"></i>
-        <h2>Harmon</h2>
-    </div>
-    <div class="links-container">
-        <div class="panel-user">
-            <div class="panel-user-img">
-                <img src="img/avatar.jpg" alt="">
-            </div>
-            <a href="#"><strong>Carol M.</strong></a>
-        </div>
-        <ul class="list-unstyled dash-links">
-            <li><a href="dashboard.html" class="active"><i class="fa fa-th-large"></i> <span>Dashboard</span></a></li>
-        </ul>
-        <div class="logout"><a href="index.html">Logout</a></div>
-    </div>
-</div>
-<!--end side menu-->
 <div class="slide-container">
     <div class="dashboard-content">
 		<h1>Dashboard Studio Musik tidak dapat diakses sebelum email diverifikasi dan akun dikonfirmasi oleh admin</h1>
@@ -48,26 +29,7 @@
 </div>
 @else
 
-<!--side menu-->
-<div class="side-nav">
-    <div class="dash-logo">
-        <i class="fa fa-times cls-nav"></i>
-        <h2>Harmon</h2>
-    </div>
-    <div class="links-container">
-        <div class="panel-user">
-            <div class="panel-user-img">
-                <img src="img/avatar.jpg" alt="">
-            </div>
-            <a href="#"><strong>Carol M.</strong></a>
-        </div>
-        <ul class="list-unstyled dash-links">
-            <li><a href="dashboard.html" class="active"><i class="fa fa-th-large"></i> <span>Dashboard</span></a></li>
-        </ul>
-        <div class="logout"><a href="index.html">Logout</a></div>
-    </div>
-</div>
-<!--end side menu-->
+
 
 <!--dashboard content-->
 <div class="slide-container">

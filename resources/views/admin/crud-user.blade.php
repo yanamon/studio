@@ -33,22 +33,18 @@
                             <table id="table_id" class="table">
                                 <thead class="thead-dark">
                                     <th>No</th>
-									<th>Studio</th>
-									<th>Pemilik</th>
-									<th>Telp</th>			
-									<th>No KTP</th>
-									<th>Lokasi</th>
+									<th>Nama</th>
+									<th>Email</th>
+									<th>Telp</th>	
 									<th>Aksi&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
 								</thead>
 								<tbody>
 								@foreach($users as $i => $user)
 									   <tr>
                                        <td>{{$i+1}}</td>
-										<td>{{$user->studioMusik->nama_studio_musik}}</td>
 										<td>{{$user->name}}</td>
-										<td>{{$user->studioMusik->telp_studio}}</td>
-										<td>{{$user->studioMusik->no_ktp}}</td>
-										<td>{{$user->studioMusik->lokasi}}</td>
+										<td>{{$user->email}}</td>
+										<td>{{$user->telp}}</td>
 										<td>
 											@if($user->confirmed==0)		
 												<a href="{{route("admin.confirmStudio")}}"

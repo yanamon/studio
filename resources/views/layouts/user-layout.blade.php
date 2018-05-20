@@ -132,7 +132,28 @@
 </nav>
 <!--end top navbar-->
 
-
+<!--side menu-->
+<div class="side-nav">
+    <div class="dash-logo">
+        <i class="fa fa-times cls-nav"></i>
+        <h2>Harmon</h2>
+    </div>
+    <div class="links-container">
+        <div class="panel-user">
+            <div class="panel-user-img">
+                <img src="img/avatar.jpg" alt="">
+            </div>
+            <a href="#"><strong>Carol M.</strong></a>
+        </div>
+        <ul class="list-unstyled dash-links">
+            <li><a href="{{ route('studioMusik.index') }}" class="active"><i class="fa fa-th-large"></i> <span>Dashboard</span></a></li>
+            <li><a href="/userBooking/{{Auth::user()->id}}"><i class="fa fa-drivers-license-o"></i> <span>Bookings</span></a></li>
+            <li><a href="/userProfile/{{Auth::user()->id}}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+        </ul>
+        <div class="logout"><a href="index.html">Logout</a></div>
+    </div>
+</div>
+<!--end side menu-->
 @section('body')
     @show
 
