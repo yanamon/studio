@@ -22,13 +22,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $users = User::with('StudioMusik')->where('previlege', 1)->orderBy('confirmed')->get();
+        $users = User::with('StudioMusik')->where('previlege', 1)->orderBy('confirmed')->orderBy('updated_at','ASC')->get();
         return view("admin.unconfirmed-studio",compact('users'));
     }
 
     public function crudUser()
     {
-        $users = User::with('Penyewa')->where('previlege',0)->orderBy('created_at')->get();
+        $users = User::with('Penyewa')->where('previlege','<>', 2)->orderBy('banned','DESC')->orderBy('updated_at','ASC')->get();
         return view("admin.crud-user",compact('users'));
     }
 
@@ -74,6 +74,20 @@ class AdminController extends Controller
     public function unbanStudio(Request $request){
         $user = User::find($request->id);
         $user->confirmed = 0;
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function banUser(Request $request){
+        $user = User::find($request->id);
+        $user->banned = 1;
+        $user->save();
+        return redirect()->back();
+    }
+
+    public function unbanUser(Request $request){
+        $user = User::find($request->id);
+        $user->banned = 0;
         $user->save();
         return redirect()->back();
     }

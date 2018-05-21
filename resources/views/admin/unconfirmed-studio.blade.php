@@ -18,10 +18,10 @@
     <div class="container-fluid">
     <div class="row">
 		<div class="col-2"></div>
-        <div class="col-10">
+        <div class="col-10" id="col-10">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Konfirmasi Studio Musik</h4>
+                    <h4 class="card-title">List Studio Musik</h4>
 
                     {{-- @if(session()->has('message'))
 					<div class="alert alert-success" role="alert">
@@ -30,7 +30,7 @@
                     @endif --}}
 
                         <div class="table-responsive">
-                            <table id="table_id" class="table">
+                            <table id="table_id" class="table table-bordered">
                                 <thead class="thead-dark">
                                     <th>No</th>
 									<th>Studio</th>
@@ -38,7 +38,7 @@
 									<th>Telp</th>			
 									<th>No KTP</th>
 									<th>Lokasi</th>
-									<th>Aksi&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</th>
+									<th>Aksi</th>
 								</thead>
 								<tbody>
 								@foreach($users as $i => $user)
@@ -49,19 +49,20 @@
 										<td>{{$user->studioMusik->telp_studio}}</td>
 										<td>{{$user->studioMusik->no_ktp}}</td>
 										<td>{{$user->studioMusik->lokasi}}</td>
-										<td>
+										<td><center>
 											@if($user->confirmed==0)		
 												<a href="{{route("admin.confirmStudio")}}"
 													onclick="event.preventDefault();document.getElementById('confirmStudio{{$user->id}}').submit();">
-													<i class="fa fa-square-o" style="color:#337ab7; font-size:20px;"></i>
+													<i class="fa fa-square-o" style="color:green; font-size:20px;"></i>
 												</a>
 												<form id="confirmStudio{{$user->id}}" action="{{route("admin.confirmStudio")}}" method="POST" style="display: none;">
 													{{ csrf_field() }}
 													<input type="hidden" name="id" value="{{$user->id}}">
-												</form>
+                                                </form>
+                                                
 												<a href="{{route("admin.banStudio")}}"
 													onclick="event.preventDefault();document.getElementById('banStudio{{$user->id}}').submit();">
-													<i class="fa fa-circle" style="color:#337ab7; font-size:20px;"></i>
+													<i class="fa fa-trash" style="color:#337ab7; font-size:20px;"></i>
 												</a>
 												<form id="banStudio{{$user->id}}" action="{{route("admin.banStudio")}}" method="POST" style="display: none;">
 													{{ csrf_field() }}
@@ -70,15 +71,16 @@
 											@elseif($user->confirmed==1)
 												<a href="{{route("admin.unconfirmStudio")}}"
 													onclick="event.preventDefault();document.getElementById('unconfirmStudio{{$user->id}}').submit();">	                
-													<i class="fa fa-check-square-o" style="color:#337ab7; font-size:18px;"></i>
+													<i class="fa fa-check-square-o" style="color:green; font-size:18px;"></i>
 												</a>
 												<form id="unconfirmStudio{{$user->id}}" action="{{route("admin.unconfirmStudio")}}" method="POST" style="display: none;">
 													{{ csrf_field() }}
 													<input type="hidden" name="id" value="{{$user->id}}">
-												</form>
+                                                </form>
+                                                
 												<a href="{{route("admin.banStudio")}}"
 													onclick="event.preventDefault();document.getElementById('banStudio{{$user->id}}').submit();">
-													<i class="fa fa-circle" style="color:#337ab7; font-size:20px;"></i>
+													<i class="fa fa-trash" style="color:#337ab7; font-size:20px;"></i>
 												</a>
 												<form id="banStudio{{$user->id}}" action="{{route("admin.banStudio")}}" method="POST" style="display: none;">
 													{{ csrf_field() }}
@@ -87,15 +89,14 @@
 											@elseif($user->confirmed==2)
 												<a href="{{route("admin.unbanStudio")}}"
 													onclick="event.preventDefault();document.getElementById('unbanStudio{{$user->id}}').submit();">
-													<i class="fa fa-ban" style="color:#337ab7; font-size:20px;"></i>
+													<i class="fa fa-ban" style="color:red; font-size:20px;"></i>
 												</a>
 												<form id="unbanStudio{{$user->id}}" action="{{route("admin.unbanStudio")}}" method="POST" style="display: none;">
 													{{ csrf_field() }}
 													<input type="hidden" name="id" value="{{$user->id}}">
 												</form>
-											@endif		
-												
-											<a href="/detailStudio/{{$user->id}}"><i class="fa fa-eye"></i></a>
+                                            @endif	
+                                            </center>												
 										</td>
 									</tr>
 								@endforeach

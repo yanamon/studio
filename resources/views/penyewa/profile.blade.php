@@ -1,16 +1,16 @@
-@extends('layouts.user-layout')
+@extends('layouts.header-footer')
 
 @section('body')
 
 <!--dashboard content-->
-<div class="slide-container">
+<div class="slide-container" style="margin-left:110px">
     <div class="dashboard-content">
 
         <!--client reviews-->
         <div class="dash-profile">
             <div class="row">
                 <div class="col-lg-4">
-                    <div class="holder">
+                    <div class="holder" style="margin:0%">
                         <div class="top-part"><strong>Profile Details</strong><i class="fa fa-user"></i></div>
                         <div class="client-info">
                             <div class="client-photo">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div class="col-lg-8">
-                    <div class="holder">
+                    <div class="holder" style="margin:0%">
                         <div class="top-part"><strong>Edit Profile</strong><i class="fa fa-edit"></i></div>
                         <form class="edit-profile" action="#" method="post">
                           <div class="form-group">
@@ -65,12 +65,7 @@
         </div>
         <!--end client reviews-->
 
-        <!--dashboard footer-->
-        <div class="dash-footer">
-            <span>&copy; Serv: All Rights Reserved.</span>
-        </div>
-        <!--end dashboard footer-->
-
+     
     </div>
 </div>
 <!--end dashboard content-->

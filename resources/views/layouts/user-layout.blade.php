@@ -114,9 +114,9 @@
                     @if(Auth::user()->previlege==1)
                     <li><a href="{{ route('studioMusik.index') }}">Studio Dashboard</a></li>
                     @endif
-                    <li><a href="/userBooking/{{Auth::user()->id}}">Bookings</a></li>
-                    <li><a href="/userProfile/{{Auth::user()->id}}">Profile</a></li>
-                    <li><a href="{{ route('logout') }}"
+                    <li><a href="/userBooking">My Bookings</a></li>
+                    <li><a href="/userProfile">Profile</a></li>
+                    <li style="border-top: 1px solid gray;"><a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
                         Logout</a>
@@ -141,14 +141,14 @@
     <div class="links-container">
         <div class="panel-user">
             <div class="panel-user-img">
-                <img src="img/avatar.jpg" alt="">
+                <img src="{{ asset('/image/user/'.Auth::user()->foto_user) }}" alt="">
             </div>
-            <a href="#"><strong>Carol M.</strong></a>
+            <a href="#"><strong>{{Auth::user()->name}}</strong></a>
         </div>
         <ul class="list-unstyled dash-links">
-            <li><a href="{{ route('studioMusik.index') }}" class="active"><i class="fa fa-th-large"></i> <span>Dashboard</span></a></li>
-            <li><a href="/userBooking/{{Auth::user()->id}}"><i class="fa fa-drivers-license-o"></i> <span>Bookings</span></a></li>
-            <li><a href="/userProfile/{{Auth::user()->id}}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+            <li><a href="{{ route('studioMusik.index') }}" class="{{ Request::is('studioMusik') ? 'active' : '' }}"><i class="fa fa-th-large"></i> <span>Dashboard</span></a></li>
+            <li><a href="/userBooking" class="{{ Request::is('userBooking/') ? 'active' : '' }}"><i class="fa fa-drivers-license-o"></i> <span>My Bookings</span></a></li>
+            <li><a href="/userProfile" class="{{ Request::is('userProfile/') ? 'active' : '' }}"><i class="fa fa-user"></i> <span>Profile</span></a></li>
         </ul>
         <div class="logout"><a href="index.html">Logout</a></div>
     </div>

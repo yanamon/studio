@@ -27,8 +27,13 @@ class RedirectIfAuthenticated
             default:
                 if (Auth::guard($guard)->check()) {
                     if (Auth::guard($guard)->check()) {
-                        $previlege =  Auth::user()->previlege;
-                        if($previlege == 0) return redirect('/');
+                        $previlege =  Auth::user()->previlege; 
+                        $banned =  Auth::user()->banned;
+                        if($banned == 1) {
+                            Auth::logout();
+                            return redirect('/');
+                        }
+                        else if($previlege == 0) return redirect('/');
                         else if($previlege == 1) return redirect('/studioMusik');
                     }
                 }

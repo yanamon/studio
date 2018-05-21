@@ -77,8 +77,9 @@ class PenyewaController extends Controller
      * @param  \App\Penyewa  $penyewa
      * @return \Illuminate\Http\Response
      */
-    public function userBooking($id)
+    public function userBooking()
     {
+        $id = Auth::user()->id;
         $bookings = Booking::with(['studio' => function($query){
             $query->with('studioMusik');
          }])->with('jamMulai')->with('jamSelesai')
@@ -87,8 +88,9 @@ class PenyewaController extends Controller
         return view('penyewa.booking', compact('bookings'));
     }
 
-    public function userProfile($id)
+    public function userProfile()
     {
+        $id = Auth::user()->id;
         return view('penyewa.profile');
     }
 

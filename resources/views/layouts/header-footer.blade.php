@@ -114,9 +114,9 @@
                     @if(Auth::user()->previlege==1)
                     <li><a href="{{ route('studioMusik.index') }}">Studio Dashboard</a></li>
                     @endif
-                    <li><a href="/userBooking/{{Auth::user()->id}}">Bookings</a></li>
-                    <li><a href="/userProfile/{{Auth::user()->id}}">Profile</a></li>
-                    <li><a href="{{ route('logout') }}"
+                    <li><a href="/userBooking">My Bookings</a></li>
+                    <li><a href="/userProfile">Profile</a></li>
+                    <li style="border-top: 1px solid gray;"><a href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();">
                         Logout</a>

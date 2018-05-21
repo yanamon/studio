@@ -2,13 +2,14 @@
 
 @section('body')
 
-@if(Auth::user()->verified==0 || Auth::user()->confirmed==0)
+@if(Auth::user()->verified==0 || Auth::user()->confirmed==0 || Auth::user()->confirmed==2)
 <div class="slide-container">
     <div class="dashboard-content">
 		<h1>Dashboard Studio Musik tidak dapat diakses sebelum email diverifikasi dan akun dikonfirmasi oleh admin</h1>
         <br><br>
         <h2>
         @if(Auth::user()->confirmed==2) Registrasi studio anda ditolak oleh admin
+                <a href="{{ route('studioMusik.regisUlangStudio') }}"><button class="btn btn-outline-warning">Daftarkan Ulang Studio</button></a>
         @else
             @if(Auth::user()->verified==0)
                 Email anda belum diverifikasi,
@@ -27,6 +28,8 @@
 		</h2>
 	</div>
 </div>
+
+
 @else
 
 

@@ -1,17 +1,17 @@
-@extends('layouts.user-layout')
+@extends('layouts.header-footer')
 
 @section('body')
 
 
 <!--dashboard content-->
-<div class="slide-container">
+<div class="slide-container" style="margin-left:110px">
     <div class="dashboard-content">
 
       <!--my listings-->
-        <div class="holder">
+        <div class="holder" style="margin:0%">
             <div class="top-part"><strong>My Booking</strong><i class="fa fa-list"></i></div>
             @foreach($bookings as $i => $booking)
-            <div class="my-listing">
+            <div class="my-listing" style="padding:1rem;">
                 <h5>{{$booking->studio->studioMusik->nama_studio_musik}} -> {{$booking->studio->nama_studio}}</h5>
                 <span><i class="fa fa-check-circle-o text-success"></i> <em>{{$booking->status}}</em></span>
                 <div class="rating-stars">
@@ -22,12 +22,7 @@
         </div>
             <!--end my listings-->
 
-        <!--dashboard footer-->
-        <div class="dash-footer">
-            <span>&copy; Serv: All Rights Reserved.</span>
-        </div>
-        <!--end dashboard footer-->
-
+        
     </div>
 </div>
 <!--end dashboard content-->

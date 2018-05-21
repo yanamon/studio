@@ -24,6 +24,13 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap4.min.css">
     
+    <style>
+        #col-10{
+            padding-left : 40px;
+            padding-right : 20px;
+            padding-bottom : 20px;
+        }    
+    </style>
 
     @section('css')
 	@show
@@ -46,14 +53,14 @@
     <div class="links-container">
         <div class="panel-user">
             <div class="panel-user-img">
-                <img src="img/avatar.jpg" alt="">
+                <img src="{{ asset('/image/admin/'.Auth::user()->foto_user) }}" alt="">
             </div>
-            <a href="#"><strong>Carol M.</strong></a>
+            <a href="#"><strong>{{Auth::user()->name}}</strong></a>
         </div>
         <ul class="list-unstyled dash-links">
-            <li><a href="{{route('admin.index')}}" class="active"><i class="fa fa-th-large"></i> <span>Konfirmasi Studio</span></a></li>
-            <li><a href="{{route('admin.crudUser')}}"><i class="fa fa-th-large"></i> <span>CRUD User</span></a></li>
-            <li><a href="{{route('admin.crudStudioMusik')}}"><i class="fa fa-th-large"></i> <span>CRUD Studio</span></a></li>
+            <li><a href="{{route('admin.index')}}" class="{{ Request::is('admin') ? 'active' : '' }}"><i class="fa fa-th-large"></i> <span>List Studio</span></a></li>
+            <li><a href="{{route('admin.crudUser')}}" class="{{ Request::is('crudUser') ? 'active' : '' }}"><i class="fa fa-th-large"></i> <span>List User</span></a></li>
+            {{-- <li><a href="{{route('admin.crudStudioMusik')}}"><i class="fa fa-th-large"></i> <span>List Studio</span></a></li> --}}
         </ul>
         <div class="logout">
             <a href="{{ route('logout') }}"

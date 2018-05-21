@@ -23,7 +23,10 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/listStudio', 'HomeController@listStudio')->name('home.listStudio');
 Route::post('/nearStudio', 'HomeController@nearStudio')->name('home.nearStudio');
 Route::get('/regisStudio', ['middleware' => 'auth', 'uses'=> 'HomeController@regisStudio'])->name('home.regisStudio');
+Route::get('/regisUlangStudio', ['middleware' => 'auth', 'uses'=> 'StudioMusikController@regisUlangStudio'])->name('studioMusik.regisUlangStudio');
 Route::get('/detailStudio/{id}', 'HomeController@detailStudio')->name('index.detailStudio');
+Route::post('/updateStudio', ['middleware' => 'auth', 'uses'=> 'StudioMusikController@updateStudio'])->name('studioMusik.updateStudio');
+
 
 Route::get('/bookStudio/{id}', 'BookingController@bookStudio')->name('home.bookStudio');
 Route::post('/rekapBooking', 'BookingController@rekapBooking')->name('booking.rekapBooking');
@@ -35,8 +38,8 @@ Route::post('resendVerifikasi', 'StudioMusikController@resendVerifikasi')->name(
 //    return view("admin.home");
 //}]);
 
-Route::get('/userBooking/{id}', 'PenyewaController@userBooking')->name('penyewa.userBooking');
-Route::get('/userProfile/{id}', 'PenyewaController@userProfile')->name('penyewa.userProfile');
+Route::get('/userBooking', 'PenyewaController@userBooking')->name('penyewa.userBooking');
+Route::get('/userProfile', 'PenyewaController@userProfile')->name('penyewa.userProfile');
 
 
 
@@ -57,5 +60,6 @@ Route::post('/confirmStudio', 'AdminController@confirmStudio')->name('admin.conf
 Route::get('/detailConfirmStudio/{id}', 'AdminController@detailConfirmStudio')->name('admin.detailConfirmStudio');
 Route::post('/banStudio', 'AdminController@banStudio')->name('admin.banStudio');
 Route::post('/unbanStudio', 'AdminController@unbanStudio')->name('admin.unbanStudio');
-
+Route::post('/banUser', 'AdminController@banUser')->name('admin.banUser');
+Route::post('/unbanUser', 'AdminController@unbanUser')->name('admin.unbanUser');
 
