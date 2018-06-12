@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Auth;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -34,16 +36,46 @@ class LoginController extends Controller
      * @return void
      */
 
-    protected function authenticated()
+    protected function authenticated(Request $request)
     {
         $previlege =  Auth::user()->previlege;
         $banned =  Auth::user()->banned;
         if($banned == 1) {
             Auth::logout();
-            return redirect('/');
+            return redirect('/banned');
         }
-        else if($previlege == 0) return redirect('/');
-        else if($previlege == 1) return redirect('/studioMusik');
+        
+        else if(Auth::user()->status_online == "online") {
+            Auth::logout();
+            return redirect('/alreadyOnline');
+        }
+
+        else if($previlege == 0) {
+            if($request->previlege==1){
+                Auth::logout();
+                return redirect('/');
+            }
+            else{
+                $user = User::find(Auth::user()->id);
+                $user->status_online = "online";
+                $user->save();
+                return redirect('/');
+            }
+        }
+
+        else if($previlege == 1) {
+            $user = User::find(Auth::user()->id);
+            $user->status_online = "online";
+            $user->save();
+            
+            if($request->previlege==1){
+                return redirect('/studioMusik');
+            }
+            else{ 
+                return redirect('/');
+            }
+
+        }
     }
 
     public function __construct()

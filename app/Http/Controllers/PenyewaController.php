@@ -6,6 +6,7 @@ use Validator;
 use App\Penyewa;
 use App\Booking;
 use App\StudioMusik;
+use App\User;
 use App\Studio;
 use Illuminate\Http\Request;
 use Auth;
@@ -62,7 +63,7 @@ class PenyewaController extends Controller
         $user = new User();
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->name = $request->nama_penyewa;
+        $user->name = $request->nama;
         $user->telp = $request->telp;
         $user->previlege = 0;
         $user->save();
@@ -83,14 +84,14 @@ class PenyewaController extends Controller
         $bookings = Booking::with(['studio' => function($query){
             $query->with('studioMusik');
          }])->with('jamMulai')->with('jamSelesai')
-         ->where('id_user', $id)->get();
+         ->where('id_user', $id)->orderBy('status')->orderBy('tgl_booking')->paginate(5);
 
         return view('penyewa.booking', compact('bookings'));
     }
 
     public function userProfile()
     {
-        $id = Auth::user()->id;
+        
         return view('penyewa.profile');
     }
 
@@ -117,9 +118,21 @@ class PenyewaController extends Controller
      * @param  \App\Penyewa  $penyewa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Penyewa $penyewa)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required',
+            'telp' => 'required',
+            'alamat' => 'required'
+        ]);
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->telp = $request->telp;
+        $user->alamat = $request->alamat;
+        $user->save();
+        return redirect('userProfile');
     }
 
     /**

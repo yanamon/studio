@@ -45,22 +45,23 @@
             <div class="modal-body">
                 <div class="auth-wrapper">
                     <div class="form-tabs">
-                        <a href="#" data-frm="login-frm" id="login-frm" class="tab active">Login</a>
-                        <a href="#" data-frm="register-frm" id="register-frm" class="tab">Register</a>
+                        <a href="#" data-frm="login-frm" id="login-frm" class="tab active">Login User</a>
+                        <a href="#" data-frm="register-frm" id="register-frm" class="tab">Login Studio</a>
                     </div>
                     <form class="login-frm frm" id="login-frm2" action="{{ route('login') }}" method="post">
                         {{ csrf_field() }}
+                        <input type="hidden" name="previlege" value="0">
                         <div class="form-group">
                             <label for="email1">Email:</label>
-                            <input type="email" required name="email" autocomplete="email" id="email1">
+                            <input type="email" required name="email" autocomplete="email" >
                         </div>
                         <div class="form-group">
                             <label for="pass1">Password:</label>
-                            <input type="password" required name="password" id="pass1">
+                            <input type="password" required name="password" >
                         </div>
                         <div class="remember-me">
                             <div>
-                                <input type="checkbox" id="test1" name="remember" />
+                                <input type="checkbox"  name="remember" />
                                 <label for="test1">Remember Me</label>
                             </div>
                             <a href="#">Forgot Password?</a>
@@ -69,32 +70,39 @@
                             <input type="submit" class="btn ui-btn info" value="SIGN IN">
                         </div>
                     </form>
-                    <form class="register-frm frm hide" id="register-frm2" action="{{ route("penyewa.store") }}" method="post">
+                    <form class="register-frm frm hide" id="register-frm2" action="{{ route("login") }}" method="post">
                         {{ csrf_field() }}
+                        <input type="hidden" name="previlege" value="1">
                         <div class="form-group">
-                            <label for="nama">Nama:</label>
-                            <input type="text" required name="nama_penyewa">
+                            <label for="email1">Email:</label>
+                            <input type="email" required name="email" autocomplete="email">
                         </div>
                         <div class="form-group">
-                            <label for="email2">Email:</label>
-                            <input type="email" required name="email" autocomplete="email" id="email2">
+                            <label for="pass1">Password:</label>
+                            <input type="password" required name="password" >
                         </div>
-                        <div class="form-group">
-                            <label for="pass3">Password:</label>
-                            <input type="password" required name="password" id="pass3">
+                        <div class="remember-me">
+                            <div>
+                                <input type="checkbox" id="" name="remember" />
+                                <label for="test1">Remember Me</label>
+                            </div>
+                            <a href="#">Forgot Password?</a>
                         </div>
-                        <div class="form-group">
-                            <label for="pass2">Confirm Password:</label>
-                            <input type="password" required name="password_confirmation" id="pass2">
-                        </div>
-                        <div class="sub-btn">
-                            <input type="submit" class="btn ui-btn info" value="REGISTER">
+                        <div class="sub-btn" >
+                            <input type="submit" class="btn ui-btn info" value="SIGN IN">
                         </div>
                     </form>
+                    <div class="sub-btn" style="margin-top:-9px;margin-bottom:0px">
+                        
+                   <label><center>or</center></label>
+                    </div>
+                    <div class="sub-btn"  style="margin-top:-4px">
+                    <input style="cursor: pointer;" onclick="window.location='{{ route("home.regisUser") }}'" class="login-frm frm btn ui-btn info" type="button"  value="SIGN UP">
+                    <input style="cursor: pointer;" onclick="window.location='{{ route("home.regisStudio") }}'" class="register-frm frm hide btn ui-btn info" type="button" value="DAFTARKAN STUDIO">
+                        </div>
                 </div>
             </div>
-            <div class="modal-footer">
-            </div>
+
         </div>
     </div>
 </div>
@@ -111,9 +119,7 @@
         @else
         <li class="list-inline-item menu-li"><a href="#">{{ str_limit(Auth::user()->name, 30) }} <i class="fa fa-angle-down"></i></a>
                 <ul class="list-unstyled drop">
-                    @if(Auth::user()->previlege==1)
-                    <li><a href="{{ route('studioMusik.index') }}">Studio Dashboard</a></li>
-                    @endif
+                    
                     <li><a href="/userBooking">My Bookings</a></li>
                     <li><a href="/userProfile">Profile</a></li>
                     <li style="border-top: 1px solid gray;"><a href="{{ route('logout') }}"
@@ -141,29 +147,23 @@
 <div class="footer">
     <div class="row">
         <div class="col-lg-2 col-md-6">
-            <div class="footer-sec">
-                <h6>Who We Are</h6>
-                <a href="#">About Us</a>
-                <a href="#">Careers</a>
-                <a href="#">Feature Tour</a>
-                <a href="#">Presentation</a>
-            </div>
+            
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="footer-sec">
-                <h6>Support</h6>
-                <a href="#">Knowledge Base</a>
-                <a href="#">Video Guides</a>
-                <a href="#">Report an Issue</a>
-                <a href="#">Terms of Use</a>
+                <h6>Our Team</h6>
+                <a href="#">Uchiha Sasuke</a>
+                <a href="#">Naruto Uzumaki</a>
+                <a href="#">Sakura Haruno</a>
+                <a href="#">Kakashi Hatake</a>
             </div>
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="footer-sec">
                 <h6>Contact Us</h6>
-                <a href="mailto:someone@example.com">someone@example.com</a>
-                <span>10100 thuy NY</span>
-                <span>+1 285 6658 5476215</span>
+                <a href="mailto:someone@example.com">harmon_studio@gmail.com</a>
+                <span>Sanur, Denpasar Bali</span>
+                <span>+6289 8737 9267</span>
                 <div class="footer-social">
                     <i class="fa fa-twitter"></i>
                     <i class="fa fa-facebook-f"></i>
@@ -175,12 +175,9 @@
         </div>
         <div class="col-lg-4 col-md-6">
             <div class="footer-sec">
-                <h6>News Letter</h6>
-                <span>Subscribe to our newsletter and getter some cool staff every week.</span>
-                <form action="http://serv.neonweb.me/" method="post">
-                    <input type="email" required placeholder="Your Email Here">
-                    <button type="submit" class="btn ui-btn dark-blue"><i class="fa fa-send-o"></i></button>
-                </form>
+                <h6>About Us</h6>
+                <span>Helping people discover splendid places around them, from every music studios, So you have all that you need to make a perfect choice..</span>
+                
             </div>
         </div>
     </div>
@@ -190,17 +187,10 @@
                 <h3 class="footer-logo">Harmon</h3>
             </div>
             <div class="col-lg-6 col-md-6">
-                <nav>
-                    <a href="#">Apps</a>
-                    <a href="#">Science</a>
-                    <a href="#">Services</a>
-                    <a href="#">Nature</a>
-                    <a href="#">Creative</a>
-                    <a href="#">Search</a>
-                </nav>
+               
             </div>
             <div class="col-lg-3 col-md-3">
-                <p class="copyright"><i  class="fa fa-copyright"></i> 2017 - todate Ui-DesignLab</p>
+                <p class="copyright"><i  class="fa fa-copyright"></i> 2018 - Praktikum-Prognet</p>
             </div>
         </div>
     </div>

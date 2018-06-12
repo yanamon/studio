@@ -22,14 +22,16 @@ Route::resource('admin', 'AdminController');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/listStudio', 'HomeController@listStudio')->name('home.listStudio');
 Route::post('/nearStudio', 'HomeController@nearStudio')->name('home.nearStudio');
-Route::get('/regisStudio', ['middleware' => 'auth', 'uses'=> 'HomeController@regisStudio'])->name('home.regisStudio');
-Route::get('/regisUlangStudio', ['middleware' => 'auth', 'uses'=> 'StudioMusikController@regisUlangStudio'])->name('studioMusik.regisUlangStudio');
+Route::get('/regisStudio', 'HomeController@regisStudio')->name('home.regisStudio');
+Route::get('/regisUlangStudio', 'StudioMusikController@regisUlangStudio')->name('studioMusik.regisUlangStudio');
 Route::get('/detailStudio/{id}', 'HomeController@detailStudio')->name('index.detailStudio');
 Route::post('/updateStudio', ['middleware' => 'auth', 'uses'=> 'StudioMusikController@updateStudio'])->name('studioMusik.updateStudio');
-
+Route::get('/regisUser', 'HomeController@regisUser')->name('home.regisUser');
 
 Route::get('/bookStudio/{id}', 'BookingController@bookStudio')->name('home.bookStudio');
 Route::post('/rekapBooking', 'BookingController@rekapBooking')->name('booking.rekapBooking');
+
+Route::post('/hapusStudio/{id}', 'StudioController@hapusStudio')->name('studio.hapusStudio');
 
 Route::get('verify', 'StudioMusikController@verify')->name('studioMusik.verify');
 Route::post('resendVerifikasi', 'StudioMusikController@resendVerifikasi')->name('studioMusik.resendVerifikasi');
@@ -43,11 +45,13 @@ Route::get('/userProfile', 'PenyewaController@userProfile')->name('penyewa.userP
 
 
 
+Route::post('/confirm', 'BookingController@confirm')->name('booking.confirm');
+Route::post('/cancel', 'BookingController@cancel')->name('booking.cancel');
 
-
-
-
-
+Route::get('/studioPreview/{id}', 'StudioController@studioPreview')->name('studio.studioPreview');
+Route::get('/studioMusikPreview/{id}', 'StudioMusikController@studioMusikPreview')->name('studioMusik.studioMusikPreview');
+Route::get('/createStudio/{id}', 'StudioController@createStudio')->name('studio.createStudio');
+Route::get('/studioRoom/{id}', 'StudioMusikController@studioRoom')->name('studioMusik.studioRoom');
 Route::get('/adminlogin', 'Auth\AdminLoginController@loginform')->name('admin.loginform');
 Route::post('/adminlogin', 'Auth\AdminLoginController@login')->name('admin.login');
 Route::post('/adminlogout', 'Auth\AdminLoginController@logout')->name('admin.logout');
@@ -62,4 +66,12 @@ Route::post('/banStudio', 'AdminController@banStudio')->name('admin.banStudio');
 Route::post('/unbanStudio', 'AdminController@unbanStudio')->name('admin.unbanStudio');
 Route::post('/banUser', 'AdminController@banUser')->name('admin.banUser');
 Route::post('/unbanUser', 'AdminController@unbanUser')->name('admin.unbanUser');
+
+Route::get('/selesaiBooking', 'StudioMusikController@selesaiBooking')->name('admin.selesaiBooking');
+
+Route::get('/alreadyOnline', 'HomeController@alreadyOnline')->name('home.alreadyOnline');
+Route::get('/banned', 'HomeController@banned')->name('home.banned');
+
+Route::post('/store2', 'StudioMusikController@store2')->name('studioMusik.store2');
+Route::post('/storeOffline', 'BookingController@storeOffline')->name('booking.storeOffline');
 

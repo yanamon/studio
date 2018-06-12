@@ -58,7 +58,7 @@
                                             @else 
                                                 <a href="{{route("admin.banUser")}}"
                                                     onclick="event.preventDefault();document.getElementById('banUser{{$user->id}}').submit();">
-                                                    <i class="fa fa-trash" style="color:#337ab7; font-size:20px;"></i>
+                                                    <i class="fa fa-times" style="color:red; font-size:20px;"></i>
                                                 </a>
                                                 <form id="banUser{{$user->id}}" action="{{route("admin.banUser")}}" method="POST" style="display: none;">
                                                     {{ csrf_field() }}

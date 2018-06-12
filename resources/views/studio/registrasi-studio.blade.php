@@ -15,47 +15,94 @@
         <div class="contact-form">
             <form action="{{ route("studioMusik.store") }}" method="POST" enctype="multipart/form-data">
                 {{csrf_field()}}
-                <input name="id" type="hidden" value="{{ Auth::user()->id }}">
-                <div class="form-group">
-                    <label for="email3">Nama Studio:</label>
-                    <input autocomplete="true" id="email3" name="nama_studio_musik">
+                <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="nama">Nama:</label>
+                        <input type="text" required name="nama">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="phone">Telepon:</label>
-                    <input autocomplete="true" type="tel" id="phone" name="telp">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label for="email2">Email:</label>
+                        <input type="email" required name="email" autocomplete="email" id="email2">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="msg">No KTP</label>
-                    <input autocomplete="true" type="tel" id="phone" name="no_ktp">
+              </div>
+              <div class="row">
+                  <div class="col-lg-6">
+                      <div class="form-group">
+                          <label for="pass3">Password:</label>
+                          <input type="password" required name="password" id="pass3">
+                      </div>
+                  </div>
+                  <div class="col-lg-6">
+                      <div class="form-group">
+                          <label for="pass2">Confirm Password:</label>
+                          <input type="password" required name="password_confirmation" id="pass2">
+                      </div>
+                  </div>
                 </div>
-                <div class="form-group">
-                    <label for="msg">Upload Foto KTP</label>
-                    <input type="file" data-preview="#preview" name="foto_ktp" value="gambar">
-                </div>
-                <div class="form-group">
-                    <label for="msg">Lokasi</label>
-                    <input id="lat" type="hidden" name="lat"/>
-                    <input id="lng" type="hidden" name="lng"/>
-                    <input id="pac-input" name="lokasi" class="col-lg-8 form-control" type="text" placeholder="Cari Lokasinya Disini">
-                </div>
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="email3">Nama Studio:</label>
+                            <input autocomplete="true" id="email3" name="nama_studio_musik">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="phone">Telepon:</label>
+                            <input autocomplete="true" type="tel" id="phone" name="telp">
+                        </div>
+                    </div>
+                  </div>
+                
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="msg">No KTP</label>
+                            <input autocomplete="true" type="tel" id="phone" name="no_ktp">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="msg">Upload Foto KTP</label>
+                            <input type="file" data-preview="#preview" name="foto_ktp" value="gambar">
+                        </div>
+                    </div>                    
+                  </div>
+                
+                  <div class="row">
+                      <div class="col-lg-6">
+                          <div class="form-group">
+                              <label for="msg">Lokasi</label>
+                              <input id="lat" type="hidden" name="lat"/>
+                              <input id="lng" type="hidden" name="lng"/>
+                              <input id="pac-input" name="lokasi" class="col-lg-8 form-control" type="text" placeholder="Cari Lokasinya Disini">
+                          </div>
+                      </div>
+                      <div class="col-lg-6">
+                          <div class="form-group">
+                              <label for="msg">Upload Foto Studio Musik</label>
+                              <input type="file" data-preview="#preview" name="foto_studio_musik" value="gambar">
+                          </div>
+                      </div>
+                      
+                    </div>
+                
                 <button type="submit" class="btn ui-btn info">Submit</button>
             </form>
 
             <div class="kando info">
-                <h5>CONTACT INFORMATION</h5>
+                <br><br><br><br><br>
                 <div class="contact-info">
-                    <a href="mailto:someone@example.com">someone@example.com</a>
-                    <span>+1 285 6658 5476215</span>
-                    <span>1182 Market St,</span>
-                    <span> San Francisco, CA</span>
+                    
                 </div>
-                <div class="social">
-                    <a href="#"><i class="fa fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                    <a href="#"><i class="fa fa-linkedin"></i></a>
-                </div>
-                <i class="fa fa-envelope-o fa-5x text-white"></i>
+
+                <i class="fa fa-user-plus fa-5x text-white"></i>
+                <h5>REGISTRASI STUDIO</h5>
             </div>
         </div>
     </div>

@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 use Auth;
 use Closure;
 
-class Admin
+class StudioMiddleware
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,9 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if ( Auth::check() && Auth::user()->previlege==2 )
+        if ( Auth::check() && Auth::user()->previlege==1 )
         {
-            return redirect('adminlogin');
+            return redirect('studioMusik');
         }
         return $next($request);
         

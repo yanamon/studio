@@ -62,7 +62,7 @@
                                                 
 												<a href="{{route("admin.banStudio")}}"
 													onclick="event.preventDefault();document.getElementById('banStudio{{$user->id}}').submit();">
-													<i class="fa fa-trash" style="color:#337ab7; font-size:20px;"></i>
+													<i class="fa fa-times" style="color:red; font-size:20px;"></i>
 												</a>
 												<form id="banStudio{{$user->id}}" action="{{route("admin.banStudio")}}" method="POST" style="display: none;">
 													{{ csrf_field() }}
@@ -80,7 +80,7 @@
                                                 
 												<a href="{{route("admin.banStudio")}}"
 													onclick="event.preventDefault();document.getElementById('banStudio{{$user->id}}').submit();">
-													<i class="fa fa-trash" style="color:#337ab7; font-size:20px;"></i>
+													<i class="fa fa-times" style="color:red; font-size:20px;"></i>
 												</a>
 												<form id="banStudio{{$user->id}}" action="{{route("admin.banStudio")}}" method="POST" style="display: none;">
 													{{ csrf_field() }}

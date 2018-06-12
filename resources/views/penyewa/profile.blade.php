@@ -15,25 +15,18 @@
                         <div class="client-info">
                             <div class="client-photo">
                                 <div class="user-icon">
-                                    <img src="img/avatar.jpg" alt="">
+                                    <img src="{{ asset('/image/user/'.Auth::user()->foto_user) }}"  alt="">
                                 </div>
-                                <strong>Nancy McKenzie</strong>
-                                <em>San Francisco, CA</em>
+                                <strong>{{Auth::user()->name}}</strong>
                             </div>
                             <hr>
                             <div class="client-contact-info">
                                 <span>Email</span>
-                                <i>mackenzie@nancy.com</i>
+                                <i>{{Auth::user()->email}}</i>
                                 <span>Phone</span>
-                                <i>+1 658 5646 545</i>
+                                <i>{{Auth::user()->telp}}</i>
                                 <span>Address</span>
-                                <i>Anderson Road 32-30</i>
-                                <i>San Fransisco, CA</i>
-                                <i>United States</i>
-                                <span>Social</span>
-                                <i><em class="fa fa-facebook-f"></em> <em>facebook.com</em></i>
-                                <i><em class="fa fa-twitter"></em> <em>twitter.com</em></i>
-                                <i><em class="fa fa-google-plus"></em> <em>google.com</em></i>
+                                <i>{{Auth::user()->alamat}}</i>
                             </div>
                         </div>
                     </div>
@@ -41,21 +34,21 @@
                 <div class="col-lg-8">
                     <div class="holder" style="margin:0%">
                         <div class="top-part"><strong>Edit Profile</strong><i class="fa fa-edit"></i></div>
-                        <form class="edit-profile" action="#" method="post">
-                          <div class="form-group">
-                              <input required type="text" class="form-control" placeholder="First Name">
-                          </div>
+                        <form class="edit-profile" action="{{ route('penyewa.update', Auth::user()->id) }}" method="post">
+                            <input type="hidden" name="_METHOD" value="PUT">
+                            {{ csrf_field() }}
+                            {{ method_field("PUT") }}
                             <div class="form-group">
-                                <input required type="text" class="form-control" placeholder="Last Name">
+                                <input value="{{ Auth::user()->name }}" name="name" required type="text" class="form-control" placeholder="Name">
                             </div>
                             <div class="form-group">
-                                <input required type="email" class="form-control" placeholder="Email">
+                                <input value="{{ Auth::user()->email }}" name="email" required type="email" class="form-control" placeholder="Email">
                             </div>
                             <div class="form-group">
-                                <input required type="tel" class="form-control" placeholder="Phone">
+                                <input value="{{ Auth::user()->telp }}" name="telp" required type="tel" class="form-control" placeholder="Phone">
                             </div>
                             <div class="form-group">
-                                <input required type="text" class="form-control" placeholder="Address">
+                                <input value="{{ Auth::user()->alamat }}" name="alamat" required type="text" class="form-control" placeholder="Address">
                             </div>
                             <button class="btn" type="submit">Save Changes <i class="fa fa-save"></i></button>
                         </form>
